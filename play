@@ -1,0 +1,34 @@
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  AudioCache _audioCache;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _audioCache = AudioCache(prefix: "audio/", fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+      return
+       Scaffold(
+        appBar: AppBar(title: Text("Music play")),
+        body: RaisedButton(
+          onPressed: () => _audioCache.play('bond1.mp3'),
+          child: Text("Play Audio"),
+        ),
+      );
+
+  }
+}
